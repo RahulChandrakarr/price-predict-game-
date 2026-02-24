@@ -229,6 +229,3 @@ if __name__ == "__main__":
   - Shows the MSE (rounded) at the bottom.
 - **Styling**:
   - Uses basic CSS for a clean look: centered container, box shadow, spacing, and colors.
-
-#   p r i c e - p r e d i c t - g a m e -  
- 

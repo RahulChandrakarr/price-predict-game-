@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>House Price Prediction</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .container {
+        background: #ffffff;
+        padding: 24px 28px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        max-width: 400px;
+        width: 100%;
+      }
+      h1 {
+        margin-top: 0;
+        font-size: 22px;
+        text-align: center;
+      }
+      form {
+        margin-top: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      label {
+        font-weight: 600;
+        font-size: 14px;
+      }
+      input[type="number"] {
+        padding: 8px 10px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        font-size: 14px;
+      }
+      button {
+        margin-top: 8px;
+        padding: 10px 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: #2563eb;
+        color: white;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #1d4ed8;
+      }
+      .result,
+      .error,
+      .info {
+        margin-top: 14px;
+        font-size: 14px;
+      }
+      .result {
+        color: #047857;
+      }
+      .error {
+        color: #b91c1c;
+      }
+      .info {
+        color: #4b5563;
+      }
+      .mse {
+        margin-top: 6px;
+        font-size: 12px;
+        color: #6b7280;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>House Price Prediction</h1>
+      <form method="post">
+        <label for="area">Area</label>
+        <input
+          type="number"
+          step="any"
+          id="area"
+          name="area"
+          placeholder="Enter area (e.g. 5)"
+          required
+        />
+        <button type="submit">Predict Price</button>
+      </form>
+
+      {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
+      {% if predicted_price is not none %}
+      <div class="result">
+        Predicted price: <strong>{{ predicted_price | round(2) }}</strong>
+      </div>
+      {% else %}
+      <div class="info">Submit an area value to see the predicted price.</div>
+      {% endif %}
+
+      {% if mse is not none %}
+      <div class="mse">Model Mean Squared Error: {{ mse | round(4) }}</div>
+      {% endif %}
+    </div>
+  </body>
+</html>
+
